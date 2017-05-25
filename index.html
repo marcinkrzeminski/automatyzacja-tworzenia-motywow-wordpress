@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Automatyzacja procesu tworzenia motywów</title>
+
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/white-mkr.css">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!--<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">-->
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+</head>
+<body>
+  <div class="reveal">
+    <img class="wordcamp-logo" src="img/wcl2017-logo.png">
+    <div class="slides">
+      <section>
+        <h1>Cześć</h1>
+        <p>
+          <a href="https://krzeminski.net">
+            krzeminski.net
+          </a>
+        </p>
+        <a href="https://github.com/marcinkrzeminski">
+          <i class="fa fa-fw fa-github" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.youtube.com/c/marcinkrzeminski">
+          <i class="fa fa-fw fa-youtube" aria-hidden="true"></i>
+        </a>
+        <a href="https://codepen.io/marcinkrzeminski">
+          <i class="fa fa-fw fa-codepen" aria-hidden="true"></i>
+        </a>
+        <a href="https://twitter.com/krzeminskinet">
+          <i class="fa fa-fw fa-twitter" aria-hidden="true"></i>
+        </a>
+        <aside class="notes">
+          <ul>
+            <li>Podziękowania dla organizatorów a także wszystkich obecnych na warsztatach</li>
+            <li>Mówimy sobie na Ty</li>
+            <li>Pomagamy sobie wzajemnie, nie zasłaniamy monitora przed innymi :)</li>
+            <li>Jeśli będzie Artur to wspomnieć o pomocy</li>
+            <li>Z szeroko pojętą branżą internetową zawodowo jestem związany od 2006 roku.</li>
+            <li>Zanim dotarłem tutaj gdzie jestem współtwożyłem jedną ze znanych poznańskich firm z branży SEO, mieszkałem w Berlinie gdzie pracowałem jako front-end developer w branży e-commerce, natomiast od Listopada 2016 współpracuje z firmą Xfive na stanowisku Front-end / WordPress developera.</li>
+          </ul>
+        </aside>
+      </section>
+      <section>
+        <h1>Agenda</h1>
+        <ol>
+          <li>Prezetancja (~15 minut)</li>
+          <li>Warsztaty (~2h)
+              <ol>
+                <li>
+                  Instalacja i konfiguracja niezbędnych narzędzi
+                </li>
+                <li>
+                  Przykłady użycia
+                </li>
+                <li>
+                  Pytania i ... odpowiedzi
+                </li>
+              </ol>
+          </li>
+        </ol>
+      </section>
+      <section>
+        <h1>Wymagania</h1>
+        <ul>
+          <li>
+            Node.js + NPM + Yarn (Opcjonalnie)
+          </li>
+          <li>
+            Lokalny serwer WWW + MySQL
+            <ul>
+              <li>
+               WAMPServer
+              </li>
+              <li>
+                XAMPP
+              </li>
+              <li>
+                Krasnal Serv ;)
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <hr>
+        <p style="font-size: 14px">
+          Moja konfiguracja: Node.js - 6.9.1, NPM - 3.10.8, Apache - 2.4.23, MySQL - 5.0.11
+        </p>
+      </section>
+      <section>
+        <h1>Automatyzacja</h1>
+        <h2>
+          Procesu Tworzenia Motywów
+        </h2>
+        <small>Marcin Krzemiński</small>
+        <aside class="notes">
+          <p>
+            Na prostym przykładzie pokażę czego używam na co dzień do pracy z WordPressem.
+          </p>
+        </aside>
+      </section>
+      <section>
+        <h1>Czym jest automatyzacja?</h1>
+        <p class="fragment">
+          Wyręczanie się komputerem przy zadaniach, które powtarzamy wiele razy w trakcie codziennej pracy.
+        </p>
+      </section>
+      <section>
+        <h1>Po co automatyzować?</h1>
+        <p class="fragment">
+          Aby mieć więcej czasu na pisanie kodu :)
+        </p>
+        </aside>
+      </section>
+      <section>
+        <h1>Co można automatyzować?</h1>
+        <ul>
+          <li class="fragment">
+            instalację CMSa, wtyczek, itp
+          </li>
+          <li class="fragment">
+            przeładowanie okna przeglądarki
+          </li>
+          <li class="fragment">
+            przetwarzanie plików Sass, JS, obrazków
+          </li>
+          <li class="fragment">
+            testowanie aplikacji / strony
+          </li>
+          <li class="fragment">
+            walidacja Sass, CSS, JS, HTML
+          </li>
+          <li class="fragment">
+            tworzenie wersji produkcyjnej
+          </li>
+          <li class="fragment">
+            wiele inny, sky is the limit ;)
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h1>Jak automatyzować?</h1>
+        <ul>
+          <li class="fragment">
+            <a href="https://gruntjs.com/">Grunt</a>, <a href="http://gulpjs.com/">Gulp</a>, <a href="https://webpack.github.io/">Webpack</a>, itp
+          </li>
+          <li class="fragment">
+            <a href="http://koala-app.com/">Koala</a>, <a href="https://codekitapp.com/">CodeKit</a>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <section>
+        <h1>O krok dalej - Chisel</h1>
+          <p>
+            Chisel to generator pozwalający tworzyć zarówno statyczne projekty jak i projekty w oparciu o WordPressa.
+          </p>
+        </section>
+        <section>
+          <h1>Chisel bardziej szeczgółowo</h1>
+          <ul>
+            <li class="fragment">
+              Gulp
+            </li>
+            <li class="fragment">
+              Browsersync
+            </li>
+            <li class="fragment">
+              Twig + Timber
+            </li>
+            <li class="fragment">
+              SCSS w architekturze ITCSS
+            </li>
+            <li class="fragment">
+              Babel, Browersify, Watchify
+            </li>
+            <li class="fragment">
+              Wsparcie dla rewizji / wersji
+            </li>
+            <li class="fragment">
+              stylelint, ESLint, htmlhint
+            </li>
+            <li class="fragment">
+              wp-cli
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h1>Brzmi ciekawie?</h1>
+          <p class="fragment">
+            To do roboty ;)
+          </p>
+        </section>
+      </section>
+      <section>
+        <h1>Chcesz pracować z Chiselem?</h1>
+        <p>
+          Jeśli chcesz tworzyć projekty z oparciu o Chisela i nie tylko to zajrzyj na <a href="https://www.xfive.co/jobs/"><strong>xfive.co/jobs/</strong></a>.
+        </p>
+        <small>
+          * jeśli to nie problem to wspomnij, że trafiłeś tam dzięki mojej prezentacji a może dostanę za to mały bonusik ;)
+        </small>
+      </section>
+      <section>
+        <h1>Dzięki</h1>
+        <p>
+          <a href="https://krzeminski.net">
+            krzeminski.net
+          </a>
+        </p>
+        <a href="https://github.com/marcinkrzeminski">
+          <i class="fa fa-fw fa-github" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.youtube.com/c/marcinkrzeminski">
+          <i class="fa fa-fw fa-youtube" aria-hidden="true"></i>
+        </a>
+        <a href="https://codepen.io/marcinkrzeminski">
+          <i class="fa fa-fw fa-codepen" aria-hidden="true"></i>
+        </a>
+        <a href="https://twitter.com/krzeminskinet">
+          <i class="fa fa-fw fa-twitter" aria-hidden="true"></i>
+        </a>
+        <hr>
+        <h4>
+          Prezetancja dostępna pod:
+        </h4>
+        <ul style="font-size: 18px">
+          <li>
+            <a href="https://krzeminski.net/talks/automatyzacja-tworzenia-motywow-wordpress">
+              krzeminski.net/talks/automatyzacja-tworzenia-motywow-wordpress
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/marcinkrzeminski/automatyzacja-tworzenia-motywow-wordpress">
+              github.com/marcinkrzeminski/automatyzacja-tworzenia-motywow-wordpress
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+//        slideNumber: 'c/t',
+
+          // More info https://github.com/hakimel/reveal.js#dependencies
+          dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'socket.io/socket.io.js', async: true },
+          { src: 'plugin/notes-server/client.js', async: true }
+          ]
+        });
+    </script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="node_modules/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+  </body>
+</html>
