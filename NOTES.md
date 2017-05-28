@@ -189,6 +189,95 @@ Jeśli wszystko poszło prawidłowo to po otwarciu przeglądąrki i wpiasaniu w 
 
 Plik _wp-config.php_ jest zmodyfikowany na potrzeby Chisela. W przypadku lokalnej pracy konfiguracja bazy danych i inne zmienne definujemy w pliku _wp-confg-local.php_. Plik ten domyślnie jest dodawany do .gitignore, więc nie ma obaw, że zostanie wysłany do repozytorium.
 
+# Praca nad projektem
+
+## Odpalenie wersji deweloperskiej
+```
+npm start #npm run dev, npm watch, gulp
+```
+Wydanie tego polecenia uruchomi lokalny serwer browser-sync i otworzy automatycznie nowe okno przglądarki pod adresem _http://localhost:3000_. Dzięki zastosowaniu proxy z browser-sync mamy dostęp do naszej instalacji widniejącej pod adresem _http://nazwa_projektu.dev_
+
+## Testowanie wersji produkcyjnej
+
+Aby stworzyć nową wersję / rewizję naszego projektu, który będzie użyty na produkcji należy wydać polecenie:
+```
+npm run build
+``` 
+W momencie uruchomienia powyższej komendy te kroki są wykonane:
+
+1. Folder _dist_ zostanie wyczyszczony (usunięte wszystkie pliki)
+2. Zostaną wykonane zadania związanie ze stworzeniem docelowej wersji plików CSS oraz JavaScript.
+    - w przypadku kiedy nasz kod posiada błędy zostaniemy o tym poinformowami przez narzędzia jak eslint, stylelint, itp. Jeśli linter zwracają errory należy je naprawić ponieważ build się się nie wykona. Warninigi możemy zingnorować aczkolwiek jesli mamy czas to warto także zadbać o brak warningów.
+3. Plik rev-manifest.json zostanie zaktualizowany o wpisy dotyczące najnowszych wersji.
+
+## Dodawanie nowych stron
+
+Z poziomu wiersza poleceń / terminala wydaj polcenie
+```
+yo chisel:page "Nazwa strony"
+```
+
+Jeśli chcesz dodać wiele stron jednocześnie możesz to zrobić poprzez wydanie poniższego polecenia:
+```
+yo chisel:page "O firmie" "Oferta" "Kontakt"
+```
+
+Po wydaniu takiego polecania zostaną utworzone trzy strony w bazie danych a także stworzonę zostaną szablony Twiga dzięki czemu będziey mogli ostylować strony jak chcemy.
+
+```
+wp-content/themes/nazwa_projektu/templates/page-o-firmie.twig
+wp-content/themes/nazwa_projektu/templates/page-oferta.twig
+wp-content/themes/nazwa_projektu/templates/page-kontakt.twig
+```
+
+## Timber
+
+Odysłam do prezentacji jaką robiłem na jeden z lokalnych meetupów WordPressa w Poznaniu.
+
+https://krzeminski.net/talks/timber-wprowadzenie/
+
+### Wskazówka odnośnie długich klas i modyfikatorów
+
+```twig
+<article class="{{
+  className(
+    'c-some-post',
+    'red',
+    'type-' ~ post.type,
+    (post.thumbnail ? 'has-thumbnail')
+  )
+}}"></article>
+```
+Wynik użycia funkcji className:
+```twig
+<article class="c-some-post c-some-post--red c-some-post--type-post"></article>
+```
+
+# JavaScript
+
+Chisel zawiera wsparcie dla ES2015 przy pomocy Babela, a także korzysta z Browersify + Watchify jak mechanizmu zarządzania zależnościami.
+
+##  Używanie pluginów jQuery z Browersify
+
+1. Zainstaluj jQuery 
+```
+npm install --save jquery
+```
+2. Daj globalny dostęp do jQuery
+```javascript
+window.jQuery = window.$ = require('jquery');
+```
+3. Załaduj wymagany plugin
+```javascript
+require('flexslider');
+```
+
+## Używanie pluginów / blibliotek spoza NPM
+
+Skorzystaj z https://github.com/thlorenz/browserify-shim#you-will-always
+
+@todo - przykład użycia
+
 ##### Źródła i przydatne linki
 - https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/
 - http://devtuts.butlerccwebdev.net/testserver/xampp-cpanel-running.png
