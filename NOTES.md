@@ -185,6 +185,10 @@ Jeśli wszystko poszło prawidłowo to po otwarciu przeglądąrki i wpiasaniu w 
 - **gulpfile.js** - importuje zadania Gulpa z folderu gulp/ i uruchamia odpowiednie zadania w zależności od wydanego polecenia
 - **package.json** - konfiguracja zależności NPM
 
+# Trochę na temat pliku wp-config-local.php
+
+Plik _wp-config.php_ jest zmodyfikowany na potrzeby Chisela. W przypadku lokalnej pracy konfiguracja bazy danych i inne zmienne definujemy w pliku _wp-confg-local.php_. Plik ten domyślnie jest dodawany do .gitignore, więc nie ma obaw, że zostanie wysłany do repozytorium.
+
 ##### Źródła i przydatne linki
 - https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/
 - http://devtuts.butlerccwebdev.net/testserver/xampp-cpanel-running.png
