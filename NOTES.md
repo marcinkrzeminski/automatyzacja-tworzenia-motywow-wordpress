@@ -146,6 +146,45 @@ Jeśli wszystko poszło prawidłowo to po otwarciu przeglądąrki i wpiasaniu w 
 
 ![Chisel - Strona domyślna](img/chisel-default-theme.png)
 
+# Omówienie struktury
+- **gulp** - zadania Gulpa
+- **node_modules** - moduły Node.js do realizacji zadań Gulpa 
+- **src** - pliki źródłowe
+    - **assets** - czcionki, pliki graficzne, itp
+    - **scripts** - pliki JavaScript
+    - **app.js** - główny plik JavaScript
+    - **greeting.js** - przykładowy moduł JS
+    - **styles** - pliki Sass w architekturze ITCSS
+        - **components** - komponenty, większość kodu tworzymy tutaj
+        - **elements** - generyczne elementy HTML (h1, a, itd), bez klas czy ID
+        - **generic** - reset / normalize, box-sizing itp
+        - **objects** - selektory oparte na klasach, nie zawierają styli dekorujących 
+        - **settings** - ustawienia 
+        - **tools** - narzędzia czyli wszyskie funkcje, mixiny itp
+        - **utilities** - narzędzia pomocniczne, ładowane na końcu i nadpisujące wszystkie style
+        - **vendor** - dodatkowe biblioteki, itp
+        - **main.scss** - główny plik Sass, importujące wszystkie moduły naszej architektury 
+- **wp** - folder z WordPressem
+    - **wp-content/themes/nazwa_projektu/** - automatycznie utworzony motyw
+        - **dist** - miejsce docelowe na pliki CSS, JS, obrazki itp
+        - **templates** - szablony Twiga
+        - **index.php** - pliki wymagane przez WP (Chisel Starter theme file) 
+        - **functions.php**
+        - ...
+    - **wp-config-local.php** - lokalna konfiguracja WP
+- **.editorconfig** - zapewania jendolite formatowanie w plikach projektu
+- **.eslintignore** - pomijaj wskazane pliki / folderu przy walidacji eslint
+- **.eslintrc.yml** - konfiguracja eslint
+- **.gitattributes** - konfiguracja wymuszająca Unixowe zakończenie pliku w plikach tekstowych
+- **.gitignore** - pomijaj wskazane pliki / foldery przy używaniu Gita
+- **.htmlhintrc** - konfiguracja htmllint
+- **.stylelintignore** - pomijaj wskazane pliki / foldery przy walidacji stylelint
+- **.stylelintrc.yml** - konfigruacja stylelint
+- **.yo-rc.json** - konfiguracja Yeomana
+- **dev-host.conf** - konfiguracja Virtual Host
+- **gulpfile.js** - importuje zadania Gulpa z folderu gulp/ i uruchamia odpowiednie zadania w zależności od wydanego polecenia
+- **package.json** - konfiguracja zależności NPM
+
 ##### Źródła i przydatne linki
 - https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/
 - http://devtuts.butlerccwebdev.net/testserver/xampp-cpanel-running.png
