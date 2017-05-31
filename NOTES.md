@@ -210,7 +210,7 @@ Jeśli wszystko poszło prawidłowo to po otwarciu przeglądąrki i wpiasaniu w 
 - **gulpfile.js** - importuje zadania Gulpa z folderu gulp/ i uruchamia odpowiednie zadania w zależności od wydanego polecenia
 - **package.json** - konfiguracja zależności NPM
 
-# Trochę na temat pliku wp-config-local.php
+## Uwaga na temat pliku wp-config-local.php
 
 Plik _wp-config.php_ jest zmodyfikowany na potrzeby Chisela. W przypadku lokalnej pracy konfiguracja bazy danych i inne zmienne definujemy w pliku _wp-confg-local.php_. Plik ten domyślnie jest dodawany do .gitignore, więc nie ma obaw, że zostanie wysłany do repozytorium.
 
@@ -259,7 +259,7 @@ wp-content/themes/nazwa_projektu/templates/page-kontakt.twig
 
 Odysłam do prezentacji jaką robiłem na jeden z lokalnych meetupów WordPressa w Poznaniu.
 
-https://krzeminski.net/talks/timber-wprowadzenie/
+- https://krzeminski.net/talks/timber-wprowadzenie/
 
 ### Wskazówka odnośnie długich klas i modyfikatorów
 
