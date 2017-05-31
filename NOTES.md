@@ -1,5 +1,6 @@
 # Zanim zaczniemy
 
+- czat - https://tlk.io/automatyzacja-wp
 - Node.js w wersji 4.5+
 - NPM
 - Yarn (zalecany)
@@ -140,9 +141,33 @@ sudo apachectl restrart
 sudo service apache2 restart
 ```
 
+Możliwe, że vhost nie będzie działał. W tym przypadku pierwszym krokiem jest dodanie nazwy naszej lokalnej domeny w pliku _dev-vhost.conf_
+
+```
+<VirtualHost nazwa_projetku.dev:80>
+    DocumentRoot "/Users/marcin/Sites/private/automatyzacja/wp"
+    ServerName automatyzacja.dev
+    <Directory "/Users/marcin/Sites/private/automatyzacja/wp">
+      AllowOverride All
+      Require all granted
+    </Directory>
+</VirtualHost>
+```
+
+Jeśli to nie pomoże to możemy używać projektu po adresie localhost. Należy pamiętać aby zmienić w takim razie w tabeli _wp_options_ adres strony, a także w pliku _gulp/tasks/serve.js_
+```
+# przed
+target: generator_config.proxyTarget || name+'.dev',
+
+# po 
+target: http://localhost/~marcin/nazwa_projektu/,
+``` 
+
 ### Projekt jest gotowy do pracy
 
 Jeśli wszystko poszło prawidłowo to po otwarciu przeglądąrki i wpiasaniu w pasku adresu http://nazwa_projektu.dev powinnyśmy zobaczyć stronę startową naszego projektu.
+
+
 
 ![Chisel - Strona domyślna](img/chisel-default-theme.png)
 
@@ -278,6 +303,306 @@ Skorzystaj z https://github.com/thlorenz/browserify-shim#you-will-always
 
 @todo - przykład użycia
 
+# wp-cli
+
+- http://wp-cli.org/ - oficjalna strona
+- https://developer.wordpress.org/cli/commands/ - dokumentacja
+
+Pozwala na zarządzanie WP poprzez linię poleceń. Dzięki _wp-cli_ jesteśmy wstanie m.in:
+- instalować / aktualizować WP
+- zarządzać
+    - postami i stronami
+    - komentarzami
+    - wtyczkami
+    - użytkownikami
+    - bazą danych
+    - mediami
+    - i wiele, wiele innych
+
+## Instalacja WordPressa
+- https://developer.wordpress.org/cli/commands/core/
+- https://developer.wordpress.org/cli/commands/core/download/
+https://developer.wordpress.org/cli/commands/config/create/
+- https://developer.wordpress.org/cli/commands/core/install/
+
+```
+wp core download --locale=pl_PL
+wp core config --dbname=wpcli --dbuser=root --dbpass=root
+wp core install --url=example.com --title=Example --admin_user=marcin --admin_password=marcin --admin_email=marcin@iwiz.pl
+```
+
+## Zarządzanie postami / stronami / typami postów
+- https://developer.wordpress.org/cli/commands/post/
+
+### Lista
+- https://developer.wordpress.org/cli/commands/post/list/
+
+```
+# Wszystkie wpisy
+wp post list
+# Wszystkie strony
+wp post list --post_type=post
+```
+
+### Dodawanie
+- https://developer.wordpress.org/cli/commands/post/create/
+
+```
+# Dodanie strony Oferta - domyślny status to szkic
+wp post create --post_type=page --post_title='Oferta'
+
+# dodanie 1 strony z pliku tekstowego ze statusem opublikowany
+wp post create ~/Desktop/Warsztat/Strony/oferta.txt --post_type=page --post_title="Nowa oferta z pliku" --post_status=publish
+```
+
+### Generowanie postów
+- https://developer.wordpress.org/cli/commands/post/generate/
+
+```
+# domyślnie doda 100 wpisów
+wp post generate
+
+# dodanie 5 stron
+wp post generate --post_type=page --count=5
+
+# dodanie 10 wpisów z tekstem Lorem Ipsum
+curl http://loripsum.net/api/5 | wp post generate --post_content --count=10
+```
+
+### Usuwwanie
+- https://developer.wordpress.org/cli/commands/post/delete/
+
+```
+# Usunięcie posta o id = 21
+wp post delete 21 
+
+# Usunięcie posta o id = 21 z pominięciem kosza
+wp post delete 21 --force
+
+# Usunięcie wszystkich stron z kosza
+wp post list --post_status=trash --format=ids --post_type=page | xargs wp post delete
+```
+
+### Szczegóły 
+- https://developer.wordpress.org/cli/commands/post/get/
+
+```
+wp post get 1
+```
+
+### Zadanie
+- dodaj kilka wpisów oraz stron i je usuń
+
+## Zarządzanie Wtyczkami
+- https://developer.wordpress.org/cli/commands/plugin/
+
+### Lista
+- https://developer.wordpress.org/cli/commands/plugin/list/
+```
+wp plugin list
+```
+
+### Wyszukiwanie
+- https://developer.wordpress.org/cli/commands/plugin/search/
+
+```
+wp plugin search "duplicator"
+```
+
+### Instalacja
+- https://developer.wordpress.org/cli/commands/plugin/install/
+
+```
+# instalacja najnowszej wersji i aktywacja
+wp plugin install wp-page-duplicator --activate
+
+# instalacja z lokalnego pliku zip
+wp plugin install ~/Desktop/Warsztat/Wtyczki/autoptimize.2.1.0.zip
+```
+
+### Aktywacja / deaktywacja wtyczki
+- https://developer.wordpress.org/cli/commands/plugin/activate/
+- https://developer.wordpress.org/cli/commands/plugin/deactivate/
+
+```
+# włączenie
+wp plugin activate autoptimize
+#wyłączenie
+wp plugin deactivate autoptimize
+
+# zmiana stanu 
+wp plugin toggle autoptimize
+```
+
+### Aktualizacja wtyczek
+- https://developer.wordpress.org/cli/commands/plugin/update/
+
+```
+# wybrana wtyczka
+wp plugin update autoptimize
+# wszystkie
+wp plugin update --all 
+```
+
+### Usuwanie wtyczek
+- https://developer.wordpress.org/cli/commands/plugin/deactivate/
+- https://developer.wordpress.org/cli/commands/plugin/uninstall/
+
+```
+# wyłączenie
+wp plugin deactivate autoptimize
+# usunięcie
+wp plugin uninstall autoptimize
+```
+
+### Zadanie
+- dodaj kilka wtyczek i usuń kilka z nich
+
+## Zarządzanie motywami
+- https://developer.wordpress.org/cli/commands/theme/
+
+### Lista
+- https://developer.wordpress.org/cli/commands/theme/list/
+
+```
+wp theme list
+```
+
+### Wyszukiwanie
+- https://developer.wordpress.org/cli/commands/theme/search/
+
+```
+wp theme search "simple"
+```
+
+### Instalacja
+- https://developer.wordpress.org/cli/commands/theme/install/
+
+```
+# tylko instalacja
+wp theme install simplex-munk
+
+# instalacja i aktywacja
+wp theme install simplex-munk --activate
+```
+
+### Aktualizacja 
+- https://developer.wordpress.org/cli/commands/theme/update/
+
+```
+# wybrany motyw
+wp theme update simplex-munk
+
+# wszystkie motywy
+wp theme update --all
+```
+
+### Usuwanie
+- https://developer.wordpress.org/cli/commands/theme/delete/
+```
+wp theme delete simplex-munk
+```
+
+### Zadanie
+- dodaj jeden motyw
+- usuń istniejący motyw
+
+## Zarządzanie użytkownikami
+- https://developer.wordpress.org/cli/commands/user/
+
+### Lista
+- https://developer.wordpress.org/cli/commands/user/list/
+
+```
+wp user list
+```
+
+### Dodawanie
+- https://developer.wordpress.org/cli/commands/user/create/
+
+```
+# Dodawanie pojedyńczego użytkownika
+wp user create artur artur@domena.pl --role=author
+
+# Dodawanie z lokalnego pliku CSV
+wp user import-csv
+
+# Dodawanie ze zdalnego pliku CSV
+wp user import-csv http://example.com/users.csv
+```
+
+### Aktualizacja
+- https://developer.wordpress.org/cli/commands/user/update/
+
+```
+# zmiana hasła
+wp user update 1 --user_pass=marcin
+```
+
+### Usuwanie
+- https://developer.wordpress.org/cli/commands/user/delete/
+```
+# wraz z jego wpisami, itp - należy potwierdzić
+wp user delete 1 
+
+# z przypisaniem jego wpisów innemu użytkownikowi
+wp user delete 4 --reassign=1
+```
+
+### Zadanie
+- dodaj nowego użytkownika i usuń go
+- zmień hasło dla istniejącego użytkownika
+
+### Zarządzanie obrazkami
+- https://developer.wordpress.org/cli/commands/media/
+
+### Wygenerowanie rozmiaru obrazkow
+- https://developer.wordpress.org/cli/commands/media/regenerate/
+```
+wp media regenerate --yes
+
+# tylko brakujące rozmiary - przydatne gdy dodamy nowy rozmiar
+wp media regenerate --only-missing --yes
+```
+
+### Import plików graficznych
+- https://developer.wordpress.org/cli/commands/media/import/
+```
+# wszystkie obrazki
+wp media import ~/Desktop/Warsztat/Obrazki/*
+
+# zdalny adres obrazka 
+wp media import https://upload.wikimedia.org/wikipedia/commons/9/93/Wordpress_Blue_logo.png
+
+# import obrazka i przypisanie go to wpisu jako obrazek wyróżniający
+wp media import sciezka-do-pliku --post_id=123 --featured_image --title="Moj obrazek"
+```
+
+### Zadanie
+- dodaj kilka obrazków z dysku / adresu zdalnego
+- dodaj obrazek wyróżniający dla jednego z wpisów
+
+## Korzystanie z gotowych rozwiązań tzw. scaffolding
+- https://developer.wordpress.org/cli/commands/scaffold/
+
+### Tworzenie nowych typów postów
+- https://developer.wordpress.org/cli/commands/scaffold/post-type/
+```
+wp scaffold post-type portolio --label=Portfolio
+```
+
+### Tworzenie motywu na bazie _s
+- https://developer.wordpress.org/cli/commands/scaffold/_s/
+- http://underscores.me/
+```
+# utworzenie motywu - bez aktywacji
+wp scaffold _s projekt
+
+# utworzenie motywu - z aktywacją
+wp scaffold _s projekt --activate
+```
+
 ##### Źródła i przydatne linki
 - https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/
 - http://devtuts.butlerccwebdev.net/testserver/xampp-cpanel-running.png
+- https://unsplash.com/
