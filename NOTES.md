@@ -7,6 +7,10 @@
 - Lokalny serwer WWW (MAMP, WAMP, LAMP)
     - Windows (XAMPP, WampServer)
 - opcjonalnie Git
+- edytor kodu
+    - Atom - https://atom.io/ - (Windows/Linux/macOS)
+    - Sublime Text 3 - https://www.sublimetext.com/3 - (Windows/Linux/macOS)
+    - Notepad++ - https://notepad-plus-plus.org/download/v7.4.1.html - (Windows)
 - możliwość odpalenia PHP z poziomu konsoli / wiersza poleceń
 ```
 php -v
