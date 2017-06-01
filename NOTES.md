@@ -214,6 +214,34 @@ Jeśli wszystko poszło prawidłowo to po otwarciu przeglądąrki i wpiasaniu w 
 
 Plik _wp-config.php_ jest zmodyfikowany na potrzeby Chisela. W przypadku lokalnej pracy konfiguracja bazy danych i inne zmienne definujemy w pliku _wp-confg-local.php_. Plik ten domyślnie jest dodawany do .gitignore, więc nie ma obaw, że zostanie wysłany do repozytorium.
 
+## Autoprefixer
+- https://github.com/postcss/autoprefixer
+- https://autoprefixer.github.io/
+- http://browserl.ist/
+
+Czyta zawartość naszego CSSa i dodaje niezbędne prefiksy do właściwości CSSa
+
+### Autoprefixer - Zmiana domyślnych ustawień
+
+Domyślnie narzędzie wspiera:
+```
+> 1%, last 2 versions, Firefox ESR.
+```
+
+Niestety nie daje nam to wsparcia dla chociażby IE 10 / 11 czy starszych wersji iOSa (iPhone 5/5S). 
+
+Aby zmienić domyślne ustawienia w pliku _package.json_ należy dodać nową sekcję:
+
+```
+"browserslist": [
+    "last 2 version",
+    "> 1%",
+    "iOS >= 6"
+  ]
+```
+
+Aby sprawdzić jakie przeglądarki będą wspierane polecam stronę http://browserl.ist/ i wpisanie po przecinku wartości z naszej konfiguracji.
+
 # Praca nad projektem
 
 ## Odpalenie wersji deweloperskiej
