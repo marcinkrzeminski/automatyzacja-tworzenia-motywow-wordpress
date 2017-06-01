@@ -127,11 +127,19 @@ W pliku _httpd.conf_ lub _http-vhost.conf_ należy ustawić odpowiednią scieżk
 
 ```
 IncludeOptional /sciezka/do/projektow/*/dev-vhost.conf
+
+# Windows
+IncludeOptional c:/xampp/htdocs/*/dev-vhost.conf
 ```
 Minusem takiego rozwiązania jest to, że teraz każdy projekt musi mieć plik dev-vhost.conf, inaczej Apache będzie zwracał błąd. W takim przypadku można zlinkować pojedyńczy plik:
 ```
 IncludeOptional /sciezka/do/projektow/nazwa_projektu/dev-vhost.conf
+
+# Windows
+IncludeOptional c:/xampp/htdocs/projekt/dev-vhost.conf
 ```
+
+
 
 **Ważne**: Po wszystkim zrestuj Apache
 ```
