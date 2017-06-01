@@ -32,6 +32,32 @@ Alternatywnie, narzędzia powinny mieć swoją konsolę np. XAMPP
 
 # Instalacja
 
+### Instalacja edytora
+
+Ja będę używał PHPStorm EAP (Early Access Program) i polecam także zainstalować)
+
+- https://confluence.jetbrains.com/display/PhpStorm/PhpStorm+Early+Access+Program
+
+#### Dlaczego Warto
+- wbudowane wsparcie dla PHP/WordPress
+- wsparcie dla JavaScript / CSS / Sass (SCSS)
+- Emmet
+- i wiele wiele innych
+- wsparcie dla Gita
+- wbudowana konsola / wiersz poleceń
+
+#### Ulubione skróty klawiaturowe
+
+``cmd + g`` - tzw. multiple cursors
+
+``cmd + o`` - tzw. outline pliku
+
+``cmd + d`` - powielenie lini
+
+``cmd + e`` - usunięcie lini
+
+``cmd + shit + l`` - formatowanie
+
 ### Instalacja Node.js + NPM
 - https://nodejs.org/en/
 
