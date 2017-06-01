@@ -788,6 +788,47 @@ wp scaffold _s projekt
 wp scaffold _s projekt --activate
 ```
 
+# Testowanie
+
+## Możliwości
+
+- Przy użyciu browser-sync
+- Na macOS jest coś takiego jak symulator urządzeń Apple
+    - iPad
+    - iPhone
+- VirtualBox
+    - https://www.virtualbox.org/
+    - https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/
+- ngrok - tuneluje nasz lokalny projekt na świat
+    - https://ngrok.com/
+- https://www.browserstack.com
+    
+### ngrok
+- https://ngrok.com/
+
+Bardzo przydatne jesli chcemy pokazać klientowi albo przetestować na innym komputerze bez konieczności uruchamiania projektu na zdalnym serwerze.
+
+Krok 1: Pobierz plik ze strony: https://ngrok.com/
+Krok 2: Rozpakuj archiwum zip
+Krok 3. Uruchom z miejsca gdzie rozpakowałeś archiwum
+
+Przykład
+```
+./ngrok http projekt.dev:80
+```
+
+Pod odpaleniu tej komendy otrzymasz:
+```
+Session Status                online
+Update                        update available (version 2.2.4, Ctrl-U to update)
+Version                       2.1.18
+Region                        United States (us)
+Web Interface                 http://127.0.0.1:4040
+Forwarding                    http://65175938.ngrok.io -> automatyzacja.dev:80
+Forwarding                    https://65175938.ngrok.io -> automatyzacja.dev:80
+```
+ 
+
 ##### Źródła i przydatne linki
 - https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/
 - http://devtuts.butlerccwebdev.net/testserver/xampp-cpanel-running.png
