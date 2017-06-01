@@ -32,6 +32,84 @@ Alternatywnie, narzędzia powinny mieć swoją konsolę np. XAMPP
 
 # Instalacja
 
+### Instalacja Node.js + NPM
+- https://nodejs.org/en/
+
+Proponuję wybrać wersję LTS. Kilka dni temu wyszła najnowsza wersja 8, na której nie miałem okazji jeszcze przetestować.
+
+### Instalacja lokalnego serwera WWW
+
+Dla osób, które jeszcze nie mają tego narzędzia najlepiej będzie skorzystać z gotowego rozwiązania. Polecam zainstalować pakiet o nazwie XAMPP, który miałem okazję testować i sprawadz się dobrze. Jest dostępny na każdą platformę. 
+
+- https://www.apachefriends.org/pl/index.html
+
+### Instalacja wp-cli
+- http://wp-cli.org/
+
+Dzięki wp-cli możemy z poziomu lini poleceń instalować i zarządzać WordPressem. 
+
+* Działanie pod Windowsem może być ograniczone.
+
+Wymagania
+- PHP w wersji 5.3.29+
+- WordPress 3.7+
+
+#### Windows
+- https://make.wordpress.org/cli/handbook/installing/#installing-on-windows
+```
+# pobierz plik i zapisz go w c:\wp-cli
+https://raw.github.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+
+# utwórz plik wp.bat w c:\wp-cli i umieść w nim
+@ECHO OFF
+php "c:/wp-cli/wp-cli.phar" %*
+
+# dodaj c:\wp-cli to zmiennej systemowej PATH - z poziomu wiersza poleceń
+setx path "%path%;c:\wp-cli"
+
+# Na ekranie powinno pojawić się potwierdzenie o powodzeniu
+```
+
+Po całym procesie należy zamknąć wiersz polceń i uruchomić go ponownie i sprawdzić czy wszystko działa poprawnie:
+```
+wp --info
+```
+
+#### macOS / Unix
+- http://wp-cli.org/#installing
+
+```
+# pobierz
+curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+
+# sprawdź czy działa
+php wp-cli.phar --info
+
+# nadaj uprawnienia do wykonania
+chmod +x wp-cli.phar
+
+# dodaj do systemowego folderu aby móc odpalić bez php wp-cli.phar
+sudo mv wp-cli.phar /usr/local/bin/wp
+
+# jeśli wszystko poszło sprawnie to wydaj polcenie
+wp --info
+
+# porządany komunikat
+PHP binary:	/usr/local/Cellar/php56/5.6.29_5/bin/php
+PHP version:	5.6.29
+php.ini used:	/usr/local/etc/php/5.6/php.ini
+WP-CLI root dir:	phar://wp-cli.phar
+WP-CLI vendor dir:	phar://wp-cli.phar/vendor
+WP_CLI phar path:	/Users/marcin/Desktop
+WP-CLI packages dir:
+WP-CLI global config:
+WP-CLI project config:
+WP-CLI version:	1.2.0
+```
+
+Jeśli powyższe kroki nie działa poprawnie to skopiowanie pliku wp-cli.phar do folderu z projektem i uruchomienie poprzez komendę ``php wp-cli.phar`` powinno rozwiązać problem.
+
+
 ### Instalacja Yarna
 ```
 npm install -g yarn
@@ -45,6 +123,7 @@ node -v
 npm -v
 php -v
 yarn - v
+wp
 ```
 
 ## Yeomen + Chisel generator
