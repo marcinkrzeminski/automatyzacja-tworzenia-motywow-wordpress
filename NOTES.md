@@ -444,9 +444,50 @@ require('flexslider');
 
 ## Używanie pluginów / blibliotek spoza NPM
 
-Skorzystaj z https://github.com/thlorenz/browserify-shim#you-will-always
+- https://github.com/thlorenz/browserify-shim#you-will-always
 
-@todo - przykład użycia
+### Instalcja browserify-shim
+```
+npm install -D browserify-shim
+```
+
+### Konfiguracja browserify-shim
+
+Krok 1: W pliku ``package.json`` rejestrujemy transformacje dla browserify
+
+```
+"browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+},
+```
+
+Krok 2: W pliku ``package.json`` przypisujemy nasz skrypt do aliasu
+ 
+```
+"browser": {
+    "chained": "./src/scripts/vendor/jquery.chained.js"
+},
+```
+
+Krok 3: W pliku ``package.json`` eksportujemy 
+
+```
+"browserify-shim": {
+    "chained": {
+      "exports": "chained"
+    }
+  },
+```
+
+Krok 4. Używamy go w poniższy sposób w naszym pliku JS
+
+```javascript
+window.jQuery = window.$ = require('jquery');
+const chained = require('chained');
+```
+
 
 # wp-cli
 
