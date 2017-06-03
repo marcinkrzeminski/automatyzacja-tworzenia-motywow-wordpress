@@ -98,7 +98,7 @@ https://raw.github.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 @ECHO OFF
 php "c:/wp-cli/wp-cli.phar" %*
 
-# dodaj c:\wp-cli to zmiennej systemowej PATH - z poziomu wiersza poleceń
+# dodaj c:\wp-cli to zmiennej środowiskowej PATH - z poziomu wiersza poleceń
 setx path "%path%;c:\wp-cli"
 
 # Na ekranie powinno pojawić się potwierdzenie o powodzeniu
@@ -112,6 +112,15 @@ wp --info
 #### macOS / Unix
 - http://wp-cli.org/#installing
 
+
+##### Jeśli mamy homebrew
+
+```
+brew install homebrew/php/wp-cli
+```
+
+
+##### Bez homebrew
 ```
 # pobierz
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
