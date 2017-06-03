@@ -770,6 +770,19 @@ wp scaffold _s projekt
 wp scaffold _s projekt --activate
 ```
 
+## Zarządzanie adresami URL
+- https://developer.wordpress.org/cli/commands/rewrite/
+
+### Opróżnienie pamięci
+```
+wp rewrite flush
+```
+
+### Wylistowanie wszystkich reguł w formacie CSV
+```
+wp rewrite list --format=csv
+```
+
 ## Timber + Twig
 
 Odysłam do prezentacji jaką robiłem na jeden z lokalnych meetupów WordPressa w Poznaniu.
